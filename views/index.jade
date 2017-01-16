@@ -1,0 +1,253 @@
+doctype html
+html
+    head
+        style.
+            html,
+            body {
+                font-family: Arial, sans-serif;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            .mycontainer {
+                height: 100%;
+                padding: 5px;
+                margin-right: auto;
+                margin-left: 0;
+            }
+            input {
+                font-size: 12px;
+            }
+            h3, h4 {
+                margin: 0 0 5px 0;
+                text-align: center;
+            }
+            #hide-listings,
+            #show-listings {
+                width:48%;
+            }
+            hr {
+                background: #D0D7D9;
+                height: 1px;
+                margin: 20px 0 20px 0;
+                border: none;
+            }
+            #map {
+                bottom: 0;
+                height: 100%;
+                left: 362px;
+                position: absolute;
+                right: 0;
+            }
+            #options-box {
+                position: absolute;
+                background: #fff;
+                border: 1px solid #999;
+                border-radius: 3px;
+                height: 100%;
+                line-height: 35px;
+                padding: 10px 10px 30px 10px;
+                text-align: left;
+                width: 350px;
+            }
+            #start-location-text,
+            #end-location-text {
+                width: 100%;
+            }
+            #search-text {
+                width: 85%;
+            }
+            .start-end-location-div {
+                margin-bottom: 10px;
+            }
+            textarea {
+                resize: none;
+            }
+        title Customer locations of Kalidas
+        // bootstrap references
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+        // external js libraries and css for autocomplete feature
+        link(rel='stylesheet', href='stylesheets/jquery-ui.css')
+        script(src='https://code.jquery.com/jquery-1.12.4.js')
+        script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
+    body
+        .mycontainer
+            #options-box
+                ul.nav.nav-tabs.nav-justified
+                    li.active
+                        a(data-toggle='tab', href='#view-find-container', onclick='viewFindClicked()') View/Find
+                    li
+                        a(data-toggle='tab', href='#add-customer-data-container', onclick='addCustomerDataTabClicked()') Add Customer Data
+                br
+                .tab-content
+                    #view-find-container.tab-pane.in.active
+                        div
+                            button#show-listings.btn.btn-primary(onclick='showAllCustomers()')
+                                | Map All Customers
+                            button#hide-listings.btn.btn-primary.pull-right(onclick='hideAllMarkers()')
+                                |   Hide All
+                        hr
+                        .start-end-location-div
+                            h4 Map one customer
+                            .form-inline
+                                input#search-text.form-control(type='text', placeholder='Enter customer name, address or number!')
+                                button.btn.btn-info.form-control.pull-right(onclick='mapOneCustomer()')
+                                    span.glyphicon.glyphicon-search
+                        hr
+                        div
+                            h4 Find path between 2 customers
+                            .start-end-location-div.form-inline
+                                input#start-location-text.form-control(type='text', placeholder='Enter starting address, name or number...')
+                                // <button class="btn btn-info form-control"><span class="glyphicon glyphicon-record"></span>
+                                // </button>
+                            .start-end-location-div.form-inline
+                                input#end-location-text.form-control(type='text', placeholder='Enter destination address, name or number...')
+                                // <button class="btn btn-info form-control"><span class="glyphicon glyphicon-record"></span>
+                                // </button>
+                            div(align='center')
+                                button.btn.btn-primary(onclick='showPathBetweenTwoCustomers()') Find Path
+                        #warnings_panel
+                    #add-customer-data-container.tab-pane
+                        form#add-customer-data-form(data-toggle='validator', role='form')
+                            .form-group
+                                label.control-label(for='inputName') Name
+                                input#inputName.form-control(type='text', placeholder='Harsh Jhaveri', required='')
+                            .form-group
+                                label.control-label(for='inputAddress') Address
+                                textarea#inputAddress.form-control(rows='3', placeholder='2 choksipark, opp vishwamitra society, jivrajpark, ahmedabad - 380051', required='')
+                            .form-group
+                                label.control-label Number(s)
+                                #phone-field-div.form-inline
+                                    span
+                                        input#inputNumber1.form-control(type='text', placeholder='9429000158', pattern='[789][0-9]{9}', required='')
+                                    button.btn.btn-default.btn-sm(type='button', onclick='addPhoneField()')
+                                        span.glyphicon.glyphicon-plus
+                            .form-group
+                                button.btn.btn-primary(type='submit') Add New Customer
+                        #success-failure-msg
+            #map
+        script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyDLpGVTPzFeWphe9IWS2wNSRxJ49I0CLg4&v=3&callback=initMap')
+        script(src='https://www.gstatic.com/firebasejs/3.6.5/firebase.js')
+        script(src='javascripts/mapfunctions.js')
+        script(src='javascripts/firebasefunctions.js')
+        script.
+            var phoneFieldsCounter = 1;
+            const addCustomerDataTab = "addCustomerDataTab";
+            const viewFindTab = "viewFindCustomerDataTab";
+            var currentTab = viewFindTab;
+            function addPhoneField() {
+                phoneFieldsCounter++;
+                if (phoneFieldsCounter > 3) {
+                    phoneFieldsCounter = 3;
+                    window.alert("Don't enter more than 3 numbers !");
+                    return;
+                }
+                var d = document.getElementById('phone-field-div');
+                var newinput = document.createElement('span');
+                newinput.innerHTML = '<input type="text" class="form-control" id="inputNumber' + phoneFieldsCounter + '" placeholder="9429000158" pattern="^[0-9]{10}$"> ';
+                d.appendChild(newinput);
+            }
+            function addCustomerDataTabClicked() {
+                if (currentTab == addCustomerDataTab) return;
+                currentTab = addCustomerDataTab;
+                console.log("tab changed to " + currentTab);
+                hideAllMarkers();
+                addMapOnClickListener();
+                setCurrentLocationOnMap();
+                setFocusOn("inputName");
+            }
+            function viewFindClicked() {
+                if (currentTab == viewFindTab) return;
+                currentTab = viewFindTab;
+                console.log("tab changed to " + currentTab);
+                clearLastMarker();
+                removeMapOnClickListener();
+                showAllCustomers();
+                setFocusOn("search-text");
+            }
+            // when DOM is loaded, fetch data from firebase and set autocomplete
+            // everytime new child is added to firebase, set autocomplete accordingly
+            $(document).ready(function () {
+                var myjson = [];            // data to be displayed in dropdown will be manipulated over here
+                var receivedJson = [];      // data fetched from firebase will be stored in this array
+                var i = 0;                  // counter for num of customers
+                database.ref(DBNAME).on('child_added', function (customer) {
+                    var uniqueid = customer.key;
+                    receivedJson[i] = customer.val();
+                    //            console
+                    myjson[i] = {};
+                    myjson[i]["label"] = receivedJson[i]["name"] + ", " + receivedJson[i]["phonenums"] + ", " + receivedJson[i]["address"];   // label is used to populate dropdown list
+                    myjson[i]["value"] = receivedJson[i]["address"];  // value attribute is set to display address after selecting an item on autocomplete-dropdown
+                    myjson[i]["location"] = {};
+                    myjson[i]["location"]["lat"] = receivedJson[i]["location"]["lat"];
+                    myjson[i]["location"]["lng"] = receivedJson[i]["location"]["lng"];
+                    console.log(receivedJson[i]["name"] + ", " + receivedJson[i]["phonenums"] + ", " + receivedJson[i]["address"]);
+                    updateAutoSearch(myjson);
+                    addNewMarker(uniqueid, receivedJson[i]["location"], receivedJson[i]["name"], receivedJson[i]["address"], receivedJson[i]["phonenums"]);
+                    i++;
+                });
+            });
+            function updateAutoSearch(myjson) {
+                $("#search-text").autocomplete({
+                    source: myjson
+                });
+                $("#start-location-text").autocomplete({
+                    source: myjson
+                });
+                $("#end-location-text").autocomplete({
+                    source: myjson
+                });
+            }
+            var oneCustomerLocation = {};
+            // as the item is selected, perform the search and map selected coordinates over here.
+            $("#search-text").on('autocompleteselect', function (e, ui) {
+                oneCustomerLocation = ui.item.location;
+                //        console.log(ui.item.location.lat + " ..  " + ui.item.location.lng);
+            });
+            var startCustomerLocation = {};
+            $("#start-location-text").on('autocompleteselect', function (e, ui) {
+                startCustomerLocation = ui.item.location;
+            });
+            var endCustomerLocation = {};
+            $("#end-location-text").on('autocompleteselect', function (e, ui) {
+                endCustomerLocation = ui.item.location;
+            });
+            function setFocusOn(fieldId) {
+                document.getElementById(fieldId).focus();
+            }
+            $("#add-customer-data-form").submit(function (event) {
+                event.preventDefault(); // prevent default action of submit button
+                var newCustomer = {};
+                newCustomer["name"] = document.getElementById('inputName').value;
+                newCustomer["address"] = document.getElementById('inputAddress').value;
+                newCustomer["phonenums"] = [];
+                var phonedivitems = document.getElementById('phone-field-div').getElementsByTagName("span").length;
+                for (var i = 1; i < phonedivitems; i++) {                   // phonedivitems will contain one more span of '+',hence we will iterate till one less item
+                    var phonenum = document.getElementById('inputNumber' + i).value;
+                    if (phonenum != "")
+                        newCustomer["phonenums"].push(phonenum);
+                }
+                newCustomer["location"] = {};
+                newCustomer["location"]["lat"] = lastmarker.position.lat();
+                newCustomer["location"]["lng"] = lastmarker.position.lng();
+                if (addCustomerToFirebase(newCustomer)) {
+                    //            if data is added succesfully, then show a success popup
+                    $('#success-failure-msg').html("Customer Data Saved Successfully !").fadeIn('slow')
+                        .css('color', 'green')
+                        .delay(2000).fadeOut('slow');
+                    //            clear form and focus on name field
+                    $('#add-customer-data-form').each(function () {
+                        this.reset();
+                    });
+                    $('#inputName').focus();
+                    setFocusOn("inputName");
+                }
+                else {
+                    //            show failure popup
+                    $('#success-failure-msg').html("Oops!! Data Save Unsuccessful!").fadeIn('slow')
+                        .css('color', 'red')
+                        .delay(3000).fadeOut('slow');
+                }
+            });

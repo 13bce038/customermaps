@@ -1,0 +1,8 @@
+1. everytime harsh loads the map, view map having all locations of people from database
+2. harsh will add the location by clicking on the screen, typing the address and name, phone num
+3. locations will be stored on firebase and should have latlng coordinates, name and address as of now
+4. find(search) option on name, address and listing location related to that particular person
+5. get current location
+6. find path between 2 name, address with 'current location' being one in both input search fields
+
+7. drawing tools to list people within polygon (future scope)
