@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c909d5db-5a59-46b2-af8d-f977f1bc9703" name="Default" comment="move script from index.jade to postload.js, call only first num, move firebaseconfig to config.js">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/config.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/postload.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/firebasefunctions.js" afterPath="$PROJECT_DIR$/public/javascripts/firebasefunctions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/mapfunctions.js" afterPath="$PROJECT_DIR$/public/javascripts/mapfunctions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/todo.txt" afterPath="$PROJECT_DIR$/todo.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="$PROJECT_DIR$/views/index.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/config.js" afterPath="$PROJECT_DIR$/public/javascripts/config.js" />
     </list>
     <list id="e3c7ac0b-2964-4bb3-a8a4-f75e4333b11f" name="move script from index.jade to postload.js, call only first num, move firebaseconfig to config.js" comment="" />
+    <list id="86b76f49-8cd0-4d8a-ae06-f525dadeabfa" name="add .gitignore" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -37,14 +34,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="28" lean-forward="false" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,8 +93,9 @@
         <option value="$PROJECT_DIR$/views/index.jade" />
         <option value="$PROJECT_DIR$/public/javascripts/mapfunctions.js" />
         <option value="$PROJECT_DIR$/public/javascripts/postload.js" />
-        <option value="$PROJECT_DIR$/public/javascripts/config.js" />
         <option value="$PROJECT_DIR$/public/javascripts/firebasefunctions.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/config.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -133,34 +141,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mapsforharsh" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mapsforharsh" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mapsforharsh" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mapsforharsh" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mapsforharsh" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="routes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -402,6 +382,7 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="c909d5db-5a59-46b2-af8d-f977f1bc9703" name="Default" comment="" />
       <changelist id="e3c7ac0b-2964-4bb3-a8a4-f75e4333b11f" name="move script from index.jade to postload.js, call only first num, move firebaseconfig to config.js" comment="" />
+      <changelist id="86b76f49-8cd0-4d8a-ae06-f525dadeabfa" name="add .gitignore" comment="" />
       <created>1484588746131</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -410,7 +391,7 @@
       <workItem from="1484589300681" duration="3170000" />
       <workItem from="1484593417790" duration="1259000" />
       <workItem from="1484631655372" duration="82000" />
-      <workItem from="1485546547459" duration="2491000" />
+      <workItem from="1485546547459" duration="2826000" />
     </task>
     <task id="LOCAL-00001" summary="change async defer params">
       <created>1484591992559</created>
@@ -433,11 +414,25 @@
       <option name="project" value="LOCAL" />
       <updated>1485548954554</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="move script from index.jade to postload.js, call only first num, move firebaseconfig to config.js">
+      <created>1485549047467</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1485549047467</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add .gitignore">
+      <created>1485549304598</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1485549304598</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7456000" />
+    <option name="totallyTimeSpent" value="7791000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -501,7 +496,8 @@
     <MESSAGE value="reorder scripts" />
     <MESSAGE value="move script from index.jade to postload.js, call only first num," />
     <MESSAGE value="move script from index.jade to postload.js, call only first num, move firebaseconfig to config.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="move script from index.jade to postload.js, call only first num, move firebaseconfig to config.js" />
+    <MESSAGE value="add .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="add .gitignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -787,11 +783,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="165">
+          <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
           <folding>
             <element signature="e#0#39#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="28" lean-forward="false" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
