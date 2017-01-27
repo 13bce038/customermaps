@@ -152,7 +152,7 @@ function populateInfoWindow(marker, infowindow) {
         infowindow.setContent('<div><b>Name:&nbsp</b>' + marker.name +
             '&nbsp&nbsp<input type="button" value="View Route" ' +
             'onclick="displayDirections(' + marker.getPosition().lat() + ',' + marker.getPosition().lng() + ');"/>' +
-            '</div><br><div><b>Address:&nbsp</b>' + marker.address + '</div><br><div><b>Phone numbers:&nbsp</b>' + marker.phonenums + '</div>');
+            '</div><br><div><b>Address:&nbsp</b>' + marker.address + '</div><br><div><b>Phone numbers:&nbsp</b><a href="tel:' + marker.phonenums + '">'+marker.phonenums+'</a></div>');       
         infowindow.open(map, marker);
         // Make sure the marker property is cleared if the infowindow is closed.
         infowindow.addListener('closeclick', function () {
