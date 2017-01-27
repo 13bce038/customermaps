@@ -1,8 +1,3 @@
-var myconfig = require('./config');
-firebase.initializeApp(myconfig.firebaseConfigVar);
-
-var database = firebase.database();
-const DBNAME = myconfig.DBNAME;
 
 //  add newcustomer to firebase, display success message and clear form
 function addCustomerToFirebase(customer) {

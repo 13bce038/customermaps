@@ -10,8 +10,7 @@ var config = {
     messagingSenderId: "504959511552"
 };
 
+firebase.initializeApp(config);
+var database = firebase.database();
 // const DBNAME = 'testdata';
 const DBNAME = 'realdata';
-
-exports.firebaseConfigVar = config;
-exports.DBNAME = DBNAME;
