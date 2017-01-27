@@ -82,13 +82,14 @@ function showAllCustomers() {
     for (var i = 0; i < markers.length; i++)
         markers[i].setMap(map);
 
-    // var bounds = new google.maps.LatLngBounds();
-    // // Extend the boundaries of the map for each marker and display the marker
-    // for (var i = 0; i < markers.length; i++) {
-    //     markers[i].setMap(map);
-    //     bounds.extend(markers[i].position);
-    // }
-    // map.fitBounds(bounds);
+    var bounds = new google.maps.LatLngBounds();
+    // Extend the boundaries of the map for each marker and display the marker
+    for (i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+        bounds.extend(markers[i].position);
+    }
+    map.fitBounds(bounds);
+    map.setCenter(bounds.getCenter());
 }
 
 function hideAllMarkers() {
@@ -149,10 +150,14 @@ function populateInfoWindow(marker, infowindow) {
     if (infowindow.marker != marker) {
         infowindow.marker = marker;
         // console.log(marker);
-        infowindow.setContent('<div><b>Name:&nbsp</b>' + marker.name +
-            '&nbsp&nbsp<input type="button" value="View Route" ' +
+        var infowindowhtml =
+            '<div><b>Name:&nbsp</b>' + marker.name + '&nbsp&nbsp' +
+            '<input type="button" value="View Route" ' +
             'onclick="displayDirections(' + marker.getPosition().lat() + ',' + marker.getPosition().lng() + ');"/>' +
-            '</div><br><div><b>Address:&nbsp</b>' + marker.address + '</div><br><div><b>Phone numbers:&nbsp</b><a href="tel:' + marker.phonenums + '">'+marker.phonenums+'</a></div>');       
+            '</div><br>' +
+            '<div><b>Address:&nbsp</b>' + marker.address + '</div><br>' +
+            '<div><b>Phone numbers:&nbsp</b><a href="tel:' + marker.phonenums[0] + '">'+marker.phonenums+'</a></div>';
+        infowindow.setContent(infowindowhtml);
         infowindow.open(map, marker);
         // Make sure the marker property is cleared if the infowindow is closed.
         infowindow.addListener('closeclick', function () {
@@ -249,6 +254,6 @@ function attachInstructionText(marker, text) {
 
 
 function showPathBetweenTwoCustomers() {
-    if (!startCustomerLocation || !endCustomerLocation) return;
+    if (startCustomerLocation == {} || endCustomerLocation == {}) return;
     displayDirectionsbetween(startCustomerLocation, endCustomerLocation);
 }

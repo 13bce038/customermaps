@@ -1,15 +1,8 @@
-var config = {
-    apiKey: "AIzaSyAMgF0e0C1rcmacxbzBt9qLvwdHQYl6LEE",
-    authDomain: "map-api-test-project-154414.firebaseapp.com",
-    databaseURL: "https://map-api-test-project-154414.firebaseio.com",
-    storageBucket: "map-api-test-project-154414.appspot.com",
-    messagingSenderId: "504959511552"
-};
-firebase.initializeApp(config);
+var myconfig = require('./config');
+firebase.initializeApp(myconfig.firebaseConfigVar);
 
 var database = firebase.database();
-// const DBNAME = 'testdata';
-const DBNAME = 'realdata';
+const DBNAME = myconfig.DBNAME;
 
 //  add newcustomer to firebase, display success message and clear form
 function addCustomerToFirebase(customer) {

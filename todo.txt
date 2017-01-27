@@ -4,5 +4,4 @@
 4. find(search) option on name, address and listing location related to that particular person
 5. get current location
 6. find path between 2 name, address with 'current location' being one in both input search fields
-
 7. drawing tools to list people within polygon (future scope)
